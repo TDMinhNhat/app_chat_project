@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ChatAppBackend
+  r2dbc:
+    url: r2dbc:mariadb://localhost:3306/chatapp?createDatabaseIfNotExist=true
+    username: root
+    password: 123456789
+  flyway:
+    url: jdbc:mariadb://localhost:3306/chatapp?createDatabaseIfNotExist=true
+    user: root
+    password: 123456789
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: chatapp
+  rsocket:
+    server:
+      mapping-path: /rsocket
+      transport: websocket
+      port: 8888
