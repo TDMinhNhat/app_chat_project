@@ -5,6 +5,7 @@ import dev.skyherobrine.project.backend.exceptions.EntityNotFoundException;
 import dev.skyherobrine.project.backend.models.mariadb.User;
 import dev.skyherobrine.project.backend.repositories.mariadb.UserRepository;
 import dev.skyherobrine.project.backend.services.AuthenticateService;
+import dev.skyherobrine.project.backend.utils.EncodeDecodeUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class AuthenticateFacade {
             @RequestParam String email,
             @RequestParam String password
     ) {
-        return userRepository.findUserByEmailAndPassword(email, password)
+        return userRepository.findUserByEmailAndPassword(email, EncodeDecodeUtil.encode(password))
                 .switchIfEmpty(Mono.error(new EntityNotFoundException("Invalid email or password")))
                 .doOnNext(user -> user.setPassword(""));
     }
@@ -45,7 +46,7 @@ public class AuthenticateFacade {
                 dto.address(),
                 dto.username(),
                 dto.email(),
-                dto.password()
+                EncodeDecodeUtil.encode(dto.password())
         ));
     }
 
