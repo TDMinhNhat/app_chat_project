@@ -1,7 +1,30 @@
+@use 'variables' with (
+  variables.$text-dark-main,
+  variables.$text-light-main,
+  variables.$background-dark-main
+  variables.$background-light-main
+);
+
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.text-light-main {
+  color: $text-light-main;
+}
+
+.text-dark-main {
+  color: $text-dark-main;
+}
+
+.background-light-main {
+  background-color: $background-light-main;
+}
+
+.background-dark-main {
+  background-color: $background-dark-main;
 }
