@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Document(collection = "Group")
 @Getter @Setter
@@ -29,4 +30,15 @@ public class Group {
     @Field(name = "updated_at")
     private Timestamp updatedAt;
     private Boolean status;
+
+    public Group(Long id, String groupName, String groupDescription, User creator, GroupSetting setting) {
+        this.id = id;
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.creator = creator;
+        this.setting = setting;
+        this.icon = "";
+        this.createdAt = this.updatedAt = Timestamp.valueOf(LocalDateTime.now());
+        this.status = true;
+    }
 }
