@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Document(collection = "GroupMember")
 @Getter @Setter
@@ -22,4 +23,12 @@ public class GroupMember {
     private Timestamp createdAt;
     @Field(name = "updated_at")
     private Timestamp updatedAt;
+    private boolean status;
+
+    public GroupMember(GroupMemberKey id, GroupRole role) {
+        this.id = id;
+        this.role = role;
+        this.createdAt = this.updatedAt = Timestamp.valueOf(LocalDateTime.now());
+        this.status = true;
+    }
 }
