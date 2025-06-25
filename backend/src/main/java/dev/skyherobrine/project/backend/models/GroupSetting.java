@@ -7,7 +7,17 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class GroupSetting {
 
-    @NotBlank(message = "The group type property cann't be blank!")
+    @NotBlank(message = "The group type property can't be blank!")
     private GroupType type;
 
+    private boolean allowSendMessage;
+
+    private boolean allowChangeGroupName;
+
+    private boolean allowChangeGroupAvatar;
+
+    public GroupSetting(GroupType type) {
+        this.type = type;
+        this.allowSendMessage = this.allowChangeGroupAvatar = this.allowChangeGroupName = true;
+    }
 }
